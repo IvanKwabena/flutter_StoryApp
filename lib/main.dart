@@ -33,12 +33,12 @@ class _StoryPageState extends State<StoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // decoration: BoxDecoration(
-        //   image: DecorationImage(
-        //     fit: BoxFit.cover,
-        //     image: AssetImage('images/background.jpg'),
-        //   ),
-        // ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('images/background.jpg'),
+          ),
+        ),
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
@@ -78,16 +78,19 @@ class _StoryPageState extends State<StoryPage> {
             ),
             Expanded(
               flex: 2,
-              child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    _storyBrain.nextStory(2);
-                  });
-                },
-                child: Text(
-                  _storyBrain.getChoice2(),
-                  style: TextStyle(
-                    fontSize: 24.0,
+              child: Visibility(
+                visible: _storyBrain.buttonVisible(),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _storyBrain.nextStory(2);
+                    });
+                  },
+                  child: Text(
+                    _storyBrain.getChoice2(),
+                    style: TextStyle(
+                      fontSize: 24.0,
+                    ),
                   ),
                 ),
               ),
